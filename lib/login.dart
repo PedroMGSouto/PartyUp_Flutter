@@ -23,7 +23,7 @@ class Login extends StatelessWidget {
                 colors: [Colors.orange, Colors.purpleAccent]),
           ),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(width*0.05,heigth*0.05,width*0.05,heigth*0.08),
+            padding: EdgeInsets.fromLTRB(width*0.04,heigth*0.05,width*0.05,heigth*0.04),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,11 +77,14 @@ class LogFormState extends State<LogForm>{
                   return null;
                 },
                 decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.email),
+                    helperText: ' ',
                     hintText: 'Email',
-                    labelText: 'Enter your email'
+                    labelText: 'Enter your email',
+                    contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
                 ),
               ),
-              SizedBox(height: 25,),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, heigth*0.4),
                 child: TextFormField(
@@ -93,8 +96,12 @@ class LogFormState extends State<LogForm>{
                     return null;
                   },
                   decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.lock),
+                    helperText: ' ',
                     hintText: 'Password',
-                    labelText: 'Enter your password'
+                    labelText: 'Enter your password',
+                    contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
                   ),
                 ),
               ),
