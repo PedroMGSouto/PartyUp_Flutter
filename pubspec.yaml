@@ -21,6 +21,10 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  firebase_auth: 0.18.4+1
+  firebase_core: 0.5.3
+  string_validator: ^0.1.4
+  font_awesome_flutter: 8.10.1
   flutter:
     sdk: flutter
 

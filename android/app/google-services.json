@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1011364451396",
+    "project_id": "partyup-flutter",
+    "storage_bucket": "partyup-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011364451396:android:d863974aeaae32150e1811",
+        "android_client_info": {
+          "package_name": "com.example.partyup_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011364451396-sguupafpsp2v42b13k2e36n636mleaqn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.partyup_flutter",
+            "certificate_hash": "63fbd4c9d17e72469ed8332e87a84a86d2aa32c5"
+          }
+        },
+        {
+          "client_id": "1011364451396-tfv1a6aircqgpksjl5bnifk053i52rrq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChfHjBoHEijhI9iR8qSY_jpQmI-qHFa_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011364451396-tfv1a6aircqgpksjl5bnifk053i52rrq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

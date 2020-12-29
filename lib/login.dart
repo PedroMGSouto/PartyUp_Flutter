@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:partyup_flutter/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -59,6 +61,8 @@ class LogForm extends StatefulWidget{
 
 class LogFormState extends State<LogForm>{
   final _formKey = GlobalKey<FormState>();
+  var _email;
+  var _pass;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +78,7 @@ class LogFormState extends State<LogForm>{
                   if(value.isEmpty){
                     return 'Empty field!';
                   }
+                  _email=value;
                   return null;
                 },
                 decoration: InputDecoration(
@@ -93,6 +98,7 @@ class LogFormState extends State<LogForm>{
                     if(value.isEmpty){
                       return 'Empty field!';
                     }
+                    _pass = value;
                     return null;
                   },
                   decoration: InputDecoration(
@@ -114,11 +120,27 @@ class LogFormState extends State<LogForm>{
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0)),
                   color: Colors.black,
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState.validate()) {
-                      Scaffold
-                          .of(context)
-                          .showSnackBar(SnackBar(content: Text('Processing Data')));
+
+                      UserCredential userCredential;
+                      try {
+                        userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                            email: _email,
+                            password: _pass
+                        );
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          print('No user found for that email.');
+                        } else if (e.code == 'wrong-password') {
+                          print('Wrong password provided for that user.');
+                        }
+                        return;
+                      }
+                      print(userCredential.user.email);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home()));
                     }
                   },
                 ),
