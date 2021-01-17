@@ -3,10 +3,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'achievements.dart';
 import 'map.dart';
 import 'requests.dart';
+import 'profile.dart';
+
 
 /// This is the stateful widget that the main application instantiates.
 class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
+  final String email;
+  Home({Key key, @required this.email}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -14,6 +17,14 @@ class Home extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _HomeState extends State<Home> {
+  static String mail;
+
+  @override
+  void initState(){
+    super.initState();
+    mail= widget.email;
+  }
+
   int _selectedIndex = 2;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white);
@@ -25,10 +36,7 @@ class _HomeState extends State<Home> {
       'Index 3: Chat',
       style: optionStyle,
     ),
-    Text(
-      'Index 4: Profile',
-      style: optionStyle,
-    ),
+    Profile(email: mail),
   ];
 
   void _onItemTapped(int index) {

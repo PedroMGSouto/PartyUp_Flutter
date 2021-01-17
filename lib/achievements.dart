@@ -10,7 +10,8 @@ class Achievements extends StatelessWidget{
     return Scaffold(
         backgroundColor: Colors.redAccent,
         body: Column(
-            children: [Text(
+            children: [
+              Text(
               'Achievements',
               style: TextStyle(
                 color: Colors.white,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:partyup_flutter/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'globals.dart' as globals;
 
 class Login extends StatelessWidget {
   @override
@@ -138,9 +139,11 @@ class LogFormState extends State<LogForm>{
                         return;
                       }
                       print(userCredential.user.email);
+                      globals.mail = userCredential.user.email;
+                      globals.user = userCredential;
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Home()));
+                          MaterialPageRoute(builder: (context) => Home(email: userCredential.user.email)));
                     }
                   },
                 ),
