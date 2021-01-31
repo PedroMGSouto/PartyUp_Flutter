@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'register.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'globals.dart' as globals;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,7 +68,7 @@ class LRSelection extends StatelessWidget {
         gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors: [Colors.orange, Colors.purpleAccent]),
+            colors: [globals.color1, globals.color2]),
       ),
       child: Padding(
         padding: EdgeInsets.fromLTRB(

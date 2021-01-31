@@ -1,7 +1,11 @@
+import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:partyup_flutter/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'globals.dart' as globals;
 
 class Login extends StatelessWidget {
   @override
@@ -22,7 +26,7 @@ class Login extends StatelessWidget {
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Colors.orange, Colors.purpleAccent]),
+                colors: [globals.color1, globals.color2]),
           ),
           child: Padding(
             padding: EdgeInsets.fromLTRB(width*0.04,heigth*0.05,width*0.05,heigth*0.04),
@@ -131,13 +135,21 @@ class LogFormState extends State<LogForm>{
                         );
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
+                          var snackBar = SnackBar(content: Text('No user found for that email.'));
+                          Scaffold.of(context).showSnackBar(snackBar);
                           print('No user found for that email.');
                         } else if (e.code == 'wrong-password') {
+                          var snackBar = SnackBar(content: Text('Wrong password provided for that user.'));
+                          Scaffold.of(context).showSnackBar(snackBar);
                           print('Wrong password provided for that user.');
                         }
                         return;
                       }
-                      print(userCredential.user.email);
+                      globals.markers =  new HashSet<Marker>();
+                      globals.got = new HashSet<String>();
+                      globals.mail = userCredential.user.email;
+                      globals.user = userCredential;
+                      globals.username = userCredential.user.displayName;
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Home()));
