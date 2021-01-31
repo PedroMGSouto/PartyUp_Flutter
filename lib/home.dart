@@ -4,12 +4,12 @@ import 'achievements.dart';
 import 'map.dart';
 import 'requests.dart';
 import 'profile.dart';
+import 'globals.dart' as globals;
 
 
 /// This is the stateful widget that the main application instantiates.
 class Home extends StatefulWidget {
-  final String email;
-  Home({Key key, @required this.email}) : super(key: key);
+  Home({Key key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -17,13 +17,7 @@ class Home extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _HomeState extends State<Home> {
-  static String mail;
-
-  @override
-  void initState(){
-    super.initState();
-    mail= widget.email;
-  }
+  static String mail = globals.mail;
 
   int _selectedIndex = 2;
   static const TextStyle optionStyle =
@@ -32,11 +26,8 @@ class _HomeState extends State<Home> {
     Achievements(),
     Map(),
     Requests(),
-    Text(
-      'Index 3: Chat',
-      style: optionStyle,
-    ),
-    Profile(email: mail),
+    //CircularProgressIndicator(),
+    Profile(),
   ];
 
   void _onItemTapped(int index) {
@@ -72,13 +63,15 @@ class _HomeState extends State<Home> {
             label: 'Map',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.chat),
+            label: 'Requests',
           ),
+          /*
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             label: 'Chat',
           ),
+          */
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
