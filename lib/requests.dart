@@ -201,6 +201,7 @@ class _req extends State<Requests> {
                 List item = [];
 
                 data.forEach((index, data) => item.add({"key": index, ...data}));
+                item.sort((a, b) => (a["time"]).compareTo(b["time"]));
 
                 return ListView.builder(
                   physics: NeverScrollableScrollPhysics(),

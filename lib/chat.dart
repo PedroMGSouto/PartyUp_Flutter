@@ -38,13 +38,16 @@ class _req extends State<Chat> {
   Scaffold buildReq(){
     String hashed = md5.convert(utf8.encode(mail)).toString();
     return Scaffold(
+        backgroundColor: Colors.redAccent,
         appBar: AppBar(
           title: Text("Chat"),
           backgroundColor: Colors.black,
         ),
         body: Column(
-            children: <Widget>[ SingleChildScrollView(
-              child: StreamBuilder(
+            children: <Widget>[
+              Expanded(
+                  child: SingleChildScrollView(
+                child: StreamBuilder(
                 stream: dbRef.onValue,
                 builder: (context, snap) {
 
@@ -55,7 +58,10 @@ class _req extends State<Chat> {
 
                     data.forEach((index, data) => item.add({"key": index, ...data}));
 
+                    item.sort((a, b) => (a["time"]).compareTo(b["time"]));
+
                     return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: item.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -89,12 +95,12 @@ class _req extends State<Chat> {
                   else
                     return CircularProgressIndicator();
                 },
-              ),
             ),
-              Spacer(),
+    )
+              ),
               Row(
                 children: <Widget>[
-                  Expanded(child: TextFormField(decoration: new InputDecoration(border: new OutlineInputBorder(borderRadius: new BorderRadius.circular(25.0),
+                  Expanded(child: TextFormField(decoration: new InputDecoration(fillColor: Colors.white,filled: true, border: new OutlineInputBorder(borderRadius: new BorderRadius.circular(25.0),
                     borderSide: new BorderSide(),)),controller: myController,)),
                   RawMaterialButton(
                     onPressed: (){
